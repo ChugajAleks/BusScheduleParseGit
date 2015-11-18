@@ -22,10 +22,10 @@ public class BusScheduleParseDemo {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws FileNotFoundException, XMLStreamException, ParseException, IOException {
+    public static void main(String[] args) throws FileNotFoundException, XMLStreamException, ParseException, IOException, Exception {
         FileInputStream fileStream = new FileInputStream("BusSchedule_Kramatorsk.xml");
         InputStream input = fileStream;
-        BusSchedulerParse parse = new BusSchedulerParse();
+        ScheduleParse parse = new BusSchedulerParse();
         List<BusSchedule> listSchedule = parse.unmarshallinhBusSchedule(input);
         System.out.println("OUTPUT: " + listSchedule.toString());
         input.close();

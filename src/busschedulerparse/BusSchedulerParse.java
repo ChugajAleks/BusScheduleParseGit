@@ -15,10 +15,10 @@ import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 
-public class BusSchedulerParse {
+public class BusSchedulerParse implements ScheduleParse{
 
-    //private InputStream input;
-
+    
+    @Override
     public List<BusSchedule> unmarshallinhBusSchedule(InputStream input) throws XMLStreamException, ParseException, Exception {
         XMLInputFactory factory = XMLInputFactory.newInstance();
         XMLStreamReader reader = factory.createXMLStreamReader(input);
