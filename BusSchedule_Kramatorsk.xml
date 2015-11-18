@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+в каждом дне недели может быть свое расписание, но если в какой либо день и час маршрут отличается 
+от стандартного то  делается другой маршрут напр. 9-расширенный. Если в какойто день 
+автобуса нет scheduleId = "0"
+-->
+<root>
+    <bus number = "9">
+        <color r = "10" g = "20" b = "30"></color>
+        <marker adress = "marker_red.img"></marker> 
+        <dir direction = "forward"> 
+            <Monday scheduleId = "1"></Monday>
+            <Tuesday scheduleId = "1"></Tuesday>
+            <Wednesday scheduleId = "1"></Wednesday>
+            <Thursday scheduleId = "1"></Thursday>
+            <Friday scheduleId = "0"></Friday>
+            <Saturday scheduleId = "6"></Saturday>
+            <Sunday scheduleId = "6"></Sunday>
+            <schedule>             
+                <scheduleId1>
+                    <sequenceId1 id = "0" timeStart = "5:45" travelTime = "1500000">coment</sequenceId1>
+                    <sequenceId1 id = "1" timeStart = "6:00" travelTime = "1500000">coment</sequenceId1>
+                    <sequenceId1 id = "2" timeStart = "6:25" travelTime = "1500000">coment</sequenceId1>
+                    <sequenceId1 id = "3" timeStart = "6:50" travelTime = "1500000">coment</sequenceId1>   
+                </scheduleId1>
+<!--                <scheduleId6>
+                    <sequenceId6 id = "0" timeStart = "5:45" travelTime = "25">coment</sequenceId6>
+                    <sequenceId6 id = "1" timeStart = "6:00" travelTime = "25">coment</sequenceId6>
+                    <sequenceId6 id = "2" timeStart = "6:25" travelTime = "25">coment</sequenceId6>
+                    <sequenceId6 id = "3" timeStart = "6:50" travelTime = "25">coment</sequenceId6>   
+                </scheduleId6>  -->
+            </schedule>
+            <routePoint>
+                <point id = "0" lat = "45.34568" long = "32.45653" ratioVel = "1" type = "road">coment</point>
+                <point id = "1" lat = "45.34568" long = "32.45653" ratioVel = "1" type = "busStop">coment</point>
+                <point id = "2" lat = "45.34568" long = "32.45653" ratioVel = "1" type = "road">coment</point>
+                <point id = "3" lat = "45.34568" long = "32.45653" ratioVel = "1" type = "busStop">coment</point>
+                <point id = "4" lat = "45.34568" long = "32.45653" ratioVel = "1" type = "road">coment</point>
+                <point id = "5" lat = "45.34568" long = "32.45653" ratioVel = "1" type = "busStop">coment</point>
+                <point id = "6" lat = "45.34568" long = "32.45653" ratioVel = "1" type = "road">coment</point>
+                <point id = "7" lat = "45.34568" long = "32.45653" ratioVel = "1" type = "busStop">coment</point>
+                <point id = "8" lat = "45.34568" long = "32.45653" ratioVel = "1" type = "road">coment</point>
+                <point id = "9" lat = "45.34568" long = "32.45653" ratioVel = "1" type = "busStop">coment</point>
+            </routePoint>       
+        </dir>
+        <dir direction = "revers">  
+            <Monday scheduleId = "1"></Monday>
+            <Tuesday scheduleId = "1"></Tuesday>
+            <Wednesday scheduleId = "1"></Wednesday>
+            <Thursday scheduleId = "1"></Thursday>
+            <Friday scheduleId = "0"></Friday>
+            <Saturday scheduleId = "6"></Saturday>
+            <Sunday scheduleId = "6"></Sunday>    
+            <schedule>             
+                <scheduleId1>
+                    <sequenceId1 id = "4" timeStart = "5:45" travelTime = "1500000">coment</sequenceId1>
+                    <sequenceId1 id = "5" timeStart = "6:00" travelTime = "1500000">coment</sequenceId1>
+                    <sequenceId1 id = "6" timeStart = "6:25" travelTime = "1500000">coment</sequenceId1>
+                    <sequenceId1 id = "7" timeStart = "6:50" travelTime = "1500000">coment</sequenceId1>   
+                </scheduleId1>
+<!--                <scheduleId6>
+                    <sequenceId6 id = "0" timeStart = "5:45" travelTime = "25">coment</sequenceId6>
+                    <sequenceId6 id = "1" timeStart = "6:00" travelTime = "25">coment</sequenceId6>
+                    <sequenceId6 id = "2" timeStart = "6:25" travelTime = "25">coment</sequenceId6>
+                    <sequenceId6 id = "3" timeStart = "6:50" travelTime = "25">coment</sequenceId6>   
+                </scheduleId6>  -->
+            </schedule>
+            <routePoint>
+                <point id = "10" lat = "45.34568" long = "32.45653" ratioVel = "1" type = "road">coment</point>
+                <point id = "11" lat = "45.34568" long = "32.45653" ratioVel = "1" type = "busStop">coment</point>
+                <point id = "12" lat = "45.34568" long = "32.45653" ratioVel = "1" type = "road">coment</point>
+                <point id = "13" lat = "45.34568" long = "32.45653" ratioVel = "1" type = "busStop">coment</point>
+                <point id = "14" lat = "45.34568" long = "32.45653" ratioVel = "1" type = "road">coment</point>
+                <point id = "15" lat = "45.34568" long = "32.45653" ratioVel = "1" type = "busStop">coment</point>
+                <point id = "16" lat = "45.34568" long = "32.45653" ratioVel = "1" type = "road">coment</point>
+                <point id = "17" lat = "45.34568" long = "32.45653" ratioVel = "1" type = "busStop">coment</point>
+                <point id = "18" lat = "45.34568" long = "32.45653" ratioVel = "1" type = "road">coment</point>
+                <point id = "19" lat = "45.34568" long = "32.45653" ratioVel = "1" type = "busStop">coment</point>
+            </routePoint>  
+        </dir>
+    </bus>     
+    <bus number = "9-extend">
+        <color r = "10" g = "20" b = "30"></color>
+        <marker adress = "marker_red.img"></marker> 
+        <dir direction = "forward"> 
+            <Monday scheduleId = "0"></Monday>
+            <Tuesday scheduleId = "0"></Tuesday>
+            <Wednesday scheduleId = "0"></Wednesday>
+            <Thursday scheduleId = "0"></Thursday>
+            <Friday scheduleId = "1"></Friday>
+            <Saturday scheduleId = "0"></Saturday>
+            <Sunday scheduleId = "0"></Sunday>
+            <schedule>             
+                <scheduleId1>
+                    <sequenceId1 id = "8" timeStart = "5:45" travelTime = "1500000">coment</sequenceId1>
+                    <sequenceId1 id = "9" timeStart = "6:00" travelTime = "1500000">coment</sequenceId1>
+                    <sequenceId1 id = "10" timeStart = "6:25" travelTime = "1500000">coment</sequenceId1>
+                    <sequenceId1 id = "11" timeStart = "6:50" travelTime = "1500000">coment</sequenceId1>   
+                </scheduleId1>
+            </schedule>
+            <routePoint>
+                <point id = "20" lat = "45.34568" long = "32.45653" ratioVel = "1" type = "road">coment</point>
+                <point id = "21" lat = "45.34568" long = "32.45653" ratioVel = "1" type = "busStop">coment</point>
+                <point id = "22" lat = "45.34568" long = "32.45653" ratioVel = "1" type = "road">coment</point>
+                <point id = "23" lat = "45.34568" long = "32.45653" ratioVel = "1" type = "busStop">coment</point>
+                <point id = "24" lat = "45.34568" long = "32.45653" ratioVel = "1" type = "road">coment</point>
+                <point id = "25" lat = "45.34568" long = "32.45653" ratioVel = "1" type = "busStop">coment</point>
+                <point id = "26" lat = "45.34568" long = "32.45653" ratioVel = "1" type = "road">coment</point>
+                <point id = "27" lat = "45.34568" long = "32.45653" ratioVel = "1" type = "busStop">coment</point>
+                <point id = "28" lat = "45.34568" long = "32.45653" ratioVel = "1" type = "road">coment</point>
+                <point id = "29" lat = "45.34568" long = "32.45653" ratioVel = "1" type = "busStop">coment</point>
+            </routePoint>       
+        </dir>
+        <dir direction = "revers">  
+            <Monday scheduleId = "0"></Monday>
+            <Tuesday scheduleId = "0"></Tuesday>
+            <Wednesday scheduleId = "0"></Wednesday>
+            <Thursday scheduleId = "0"></Thursday>
+            <Friday scheduleId = "1"></Friday>
+            <Saturday scheduleId = "0"></Saturday>
+            <Sunday scheduleId = "0"></Sunday> 
+            <schedule>             
+                <scheduleId1>
+                    <sequenceId1 id = "12" timeStart = "5:45" travelTime = "1500000">coment</sequenceId1>
+                    <sequenceId1 id = "13" timeStart = "6:00" travelTime = "1500000">coment</sequenceId1>
+                    <sequenceId1 id = "14" timeStart = "6:25" travelTime = "1500000">coment</sequenceId1>
+                    <sequenceId1 id = "15" timeStart = "6:50" travelTime = "1500000">coment</sequenceId1>   
+                </scheduleId1>
+            </schedule>
+            <routePoint>
+                <point id = "30" lat = "45.34568" long = "32.45653" ratioVel = "1" type = "road">coment</point>
+                <point id = "31" lat = "45.34568" long = "32.45653" ratioVel = "1" type = "busStop">coment</point>
+                <point id = "32" lat = "45.34568" long = "32.45653" ratioVel = "1" type = "road">coment</point>
+                <point id = "33" lat = "45.34568" long = "32.45653" ratioVel = "1" type = "busStop">coment</point>
+                <point id = "34" lat = "45.34568" long = "32.45653" ratioVel = "1" type = "road">coment</point>
+                <point id = "35" lat = "45.34568" long = "32.45653" ratioVel = "1" type = "busStop">coment</point>
+                <point id = "36" lat = "45.34568" long = "32.45653" ratioVel = "1" type = "road">coment</point>
+                <point id = "37" lat = "45.34568" long = "32.45653" ratioVel = "1" type = "busStop">coment</point>
+                <point id = "38" lat = "45.34568" long = "32.45653" ratioVel = "1" type = "road">coment</point>
+                <point id = "39" lat = "45.34568" long = "32.45653" ratioVel = "1" type = "busStop">coment</point>
+            </routePoint>  
+        </dir>
+    </bus>       
+   
+    
+</root>
