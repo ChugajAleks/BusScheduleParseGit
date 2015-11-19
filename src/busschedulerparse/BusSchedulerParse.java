@@ -19,17 +19,17 @@ public class BusSchedulerParse implements ScheduleParse{
 
     
     @Override
-    public List<BusSchedule> unmarshallinhBusSchedule(InputStream input) throws XMLStreamException, ParseException, Exception {
+    public List<BusSchedule> unmarshallinhScheduleForOneDay(InputStream input, String dayOfWeek) throws XMLStreamException, ParseException, Exception {
         XMLInputFactory factory = XMLInputFactory.newInstance();
         XMLStreamReader reader = factory.createXMLStreamReader(input);
 
-        List<BusSchedule> busScheduleList = parseStreamReader(reader);
+        List<BusSchedule> busScheduleList = parseStreamReader(reader, dayOfWeek);
         reader.close();
         
         return busScheduleList;
     }
 
-    private List<BusSchedule> parseStreamReader(XMLStreamReader reader) throws ParseException, Exception {
+    private List<BusSchedule> parseStreamReader(XMLStreamReader reader, String dayOfWeek) throws ParseException, Exception {
         List<BusSchedule> busScheduleList = null;
         BusSchedule busSchedule = null;
         DirectionRouteSchedule directionRouteSchedule = null;
@@ -38,7 +38,7 @@ public class BusSchedulerParse implements ScheduleParse{
         List<RoutePoint> routePointList = null;
         RoutePoint routePoint = null;
         //определяем текущий день недели
-        String dayOfWeek = new SimpleDateFormat("EEEE", Locale.ENGLISH).format(System.currentTimeMillis());
+        //String dayOfWeek = new SimpleDateFormat("EEEE", Locale.ENGLISH).format(System.currentTimeMillis());
         String nameElement;
         String direction;
         String scheduleId = null;

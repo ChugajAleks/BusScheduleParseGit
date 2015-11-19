@@ -16,6 +16,6 @@ import javax.xml.stream.XMLStreamException;
  */
 public interface ScheduleParse {
     
-    public List<BusSchedule> unmarshallinhBusSchedule(InputStream input) throws Exception;
+    public List<BusSchedule> unmarshallinhScheduleForOneDay(InputStream input, String dayOfWeek) throws Exception;
     
 }
