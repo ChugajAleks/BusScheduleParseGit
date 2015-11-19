@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class DirectionRouteSchedule {
     private String name;
-    private List<ScheduleItem> schedule;
+    private List<List<ScheduleItem>> schedule;
     private List<RoutePoint> route;
     
     public boolean readyAdd(){
@@ -31,11 +31,11 @@ public class DirectionRouteSchedule {
         this.name = name;
     }
 
-    public List<ScheduleItem> getSchedule() {
+    public List<List<ScheduleItem>> getSchedule() {
         return schedule;
     }
 
-    public void setSchedule(List<ScheduleItem> schedule) {
+    public void setSchedule(List<List<ScheduleItem>> schedule) {
         this.schedule = schedule;
     }
     

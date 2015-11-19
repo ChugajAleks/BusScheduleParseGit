@@ -18,13 +18,13 @@ public class BusSchedulerParse implements ScheduleParse {
 
     private List<BusSchedule> busScheduleList;
     private BusSchedule busSchedule;
-    private DirectionRouteSchedule directionRouteSchedule;
-    private List<ScheduleItem> scheduleItemList;
+    private DirectionRouteSchedule directionRouteSchedule; 
+    private List<List<ScheduleItem>> scheduleList;
     private List<RoutePoint> routePointList;
     private RoutePoint routePoint;
     private String nameElement;
     private String direction;
-    private String scheduleId;
+    
 
 
     @Override
@@ -38,7 +38,7 @@ public class BusSchedulerParse implements ScheduleParse {
     }
 
     private List<BusSchedule> parseStreamReader(XMLStreamReader reader, String dayOfWeek) throws ParseException, Exception {
-        boolean scheduleIdEnable = false;
+        String scheduleId = null;
         int event = reader.getEventType();
         while (true) {
             try {
@@ -73,11 +73,12 @@ public class BusSchedulerParse implements ScheduleParse {
                             scheduleId = reader.getAttributeValue(0);
                         }
                         else if (nameElement.equals("schedule")) {
-                        //TODO: добавить List<ScheduleItemList> для заполнения всех имеюшихся расписаний    
+                            scheduleList = new ArrayList<List<ScheduleItem>>(); 
                         }
                         else if (nameElement.equals("scheduleId")) {
                             if (reader.getAttributeValue(0).equals(scheduleId)) {
-                                createScheduleItemList(reader);
+                                scheduleList.add(createScheduleItemList(reader));
+                                scheduleId = null;
                             }
                         }
                         else if (nameElement.equals("routePoint")) {
@@ -94,7 +95,7 @@ public class BusSchedulerParse implements ScheduleParse {
                         break;
                     
                     case XMLStreamConstants.END_ELEMENT:
-                        qwer(reader);
+                        fillClassFields(reader);
                         break;
                }
                 if (!reader.hasNext()) {
@@ -109,9 +110,9 @@ public class BusSchedulerParse implements ScheduleParse {
         return busScheduleList;
     }
 
-    private int createScheduleItemList(XMLStreamReader reader) throws ParseException, NumberFormatException, XMLStreamException {
+    private List<ScheduleItem> createScheduleItemList(XMLStreamReader reader) throws ParseException, NumberFormatException, XMLStreamException {
         ScheduleItem scheduleItem = null;
-        scheduleItemList = new ArrayList<ScheduleItem>();
+        List<ScheduleItem> scheduleItemList = new ArrayList<ScheduleItem>();
         int event = reader.getEventType();
         while (true) {
             switch (event) {
@@ -135,6 +136,7 @@ public class BusSchedulerParse implements ScheduleParse {
 //                            else
 //                                throw new XMLStreamException("Class ScheduleItem not ready for add to List");
                     }
+                    break;
             }
             if (event == XMLStreamConstants.END_ELEMENT & nameElement.equals("scheduleId") )
                 break;
@@ -142,12 +144,12 @@ public class BusSchedulerParse implements ScheduleParse {
             if (!reader.hasNext())
                 break;
         }
-        return event;
+    return  scheduleItemList;   
     }
 
-    private void qwer(XMLStreamReader reader) {
+    private void fillClassFields(XMLStreamReader reader) {
         nameElement = reader.getName().toString();
-        String sequenceId = "sequenceId" + scheduleId;
+        
         switch (nameElement) {
             case "bus":
                 if (busSchedule.readyAdd()) {
@@ -168,8 +170,10 @@ public class BusSchedulerParse implements ScheduleParse {
 //                                throw new XMLStreamException("Class DirectionRouteSchedule not ready for add to List");
                 break;
             case "schedule":
-                if (scheduleItemList.size() > 0)
-                directionRouteSchedule.setSchedule(scheduleItemList);
+                if (scheduleList.size() > 0){
+                directionRouteSchedule.setSchedule(scheduleList);
+                
+                }
 //                            else
 //                                throw new XMLStreamException("size scheduleItemList = 0");
                 break;
@@ -185,8 +189,6 @@ public class BusSchedulerParse implements ScheduleParse {
 //                            else
 //                                throw new XMLStreamException("Class RoutePoint not ready for add to List");
                 break;
-        
-        
         }
       
     }
