@@ -30,6 +30,7 @@ public class BusScheduleParseDemo {
         ScheduleParse parse = new BusSchedulerParse();
         //переменная день недели "dayOfWeek" может принимать следующие значения
         //Monday Tuesday Wednesday Thursday Friday Saturday Sunday
+        //определяем текущий день недели
         String dayOfWeek = new SimpleDateFormat("EEEE", Locale.ENGLISH).format(System.currentTimeMillis());
         //dayOfWeek = "Friday";
         List<BusSchedule> listSchedule = parse.unmarshallinhScheduleForOneDay(input, dayOfWeek);

@@ -17,17 +17,17 @@
             <Saturday scheduleId = "6"></Saturday>
             <Sunday scheduleId = "6"></Sunday>
             <schedule>             
-                <scheduleId1>
-                    <sequenceId1 id = "0" timeStart = "5:45" travelTime = "1500000">coment</sequenceId1>
-                    <sequenceId1 id = "1" timeStart = "6:00" travelTime = "1500000">coment</sequenceId1>
-                    <sequenceId1 id = "2" timeStart = "6:25" travelTime = "1500000">coment</sequenceId1>
-                    <sequenceId1 id = "3" timeStart = "6:50" travelTime = "1500000">coment</sequenceId1>   
-                </scheduleId1>
+                <scheduleId id = "1">
+                    <sequenceId id = "0" timeStart = "5:45" travelTime = "1500000">coment</sequenceId>
+                    <sequenceId id = "1" timeStart = "6:00" travelTime = "1500000">coment</sequenceId>
+                    <sequenceId id = "2" timeStart = "6:25" travelTime = "1500000">coment</sequenceId>
+                    <sequenceId id = "3" timeStart = "6:50" travelTime = "1500000">coment</sequenceId>   
+                </scheduleId>
 <!--                <scheduleId6>
-                    <sequenceId6 id = "0" timeStart = "5:45" travelTime = "25">coment</sequenceId6>
-                    <sequenceId6 id = "1" timeStart = "6:00" travelTime = "25">coment</sequenceId6>
-                    <sequenceId6 id = "2" timeStart = "6:25" travelTime = "25">coment</sequenceId6>
-                    <sequenceId6 id = "3" timeStart = "6:50" travelTime = "25">coment</sequenceId6>   
+                    <sequenceId id = "0" timeStart = "5:45" travelTime = "25">coment</sequenceId6>
+                    <sequenceId id = "1" timeStart = "6:00" travelTime = "25">coment</sequenceId6>
+                    <sequenceId id = "2" timeStart = "6:25" travelTime = "25">coment</sequenceId6>
+                    <sequenceId id = "3" timeStart = "6:50" travelTime = "25">coment</sequenceId6>   
                 </scheduleId6>  -->
             </schedule>
             <routePoint>
@@ -52,12 +52,12 @@
             <Saturday scheduleId = "6"></Saturday>
             <Sunday scheduleId = "6"></Sunday>    
             <schedule>             
-                <scheduleId1>
-                    <sequenceId1 id = "4" timeStart = "5:45" travelTime = "1500000">coment</sequenceId1>
-                    <sequenceId1 id = "5" timeStart = "6:00" travelTime = "1500000">coment</sequenceId1>
-                    <sequenceId1 id = "6" timeStart = "6:25" travelTime = "1500000">coment</sequenceId1>
-                    <sequenceId1 id = "7" timeStart = "6:50" travelTime = "1500000">coment</sequenceId1>   
-                </scheduleId1>
+                <scheduleId id = "1">
+                    <sequenceId id = "0" timeStart = "5:45" travelTime = "1500000">coment</sequenceId>
+                    <sequenceId id = "1" timeStart = "6:00" travelTime = "1500000">coment</sequenceId>
+                    <sequenceId id = "2" timeStart = "6:25" travelTime = "1500000">coment</sequenceId>
+                    <sequenceId id = "3" timeStart = "6:50" travelTime = "1500000">coment</sequenceId>   
+                </scheduleId>
 <!--                <scheduleId6>
                     <sequenceId6 id = "0" timeStart = "5:45" travelTime = "25">coment</sequenceId6>
                     <sequenceId6 id = "1" timeStart = "6:00" travelTime = "25">coment</sequenceId6>
@@ -91,12 +91,12 @@
             <Saturday scheduleId = "0"></Saturday>
             <Sunday scheduleId = "0"></Sunday>
             <schedule>             
-                <scheduleId1>
-                    <sequenceId1 id = "8" timeStart = "5:45" travelTime = "1500000">coment</sequenceId1>
-                    <sequenceId1 id = "9" timeStart = "6:00" travelTime = "1500000">coment</sequenceId1>
-                    <sequenceId1 id = "10" timeStart = "6:25" travelTime = "1500000">coment</sequenceId1>
-                    <sequenceId1 id = "11" timeStart = "6:50" travelTime = "1500000">coment</sequenceId1>   
-                </scheduleId1>
+                <scheduleId id = "1">
+                    <sequenceId id = "0" timeStart = "5:45" travelTime = "1500000">coment</sequenceId>
+                    <sequenceId id = "1" timeStart = "6:00" travelTime = "1500000">coment</sequenceId>
+                    <sequenceId id = "2" timeStart = "6:25" travelTime = "1500000">coment</sequenceId>
+                    <sequenceId id = "3" timeStart = "6:50" travelTime = "1500000">coment</sequenceId>   
+                </scheduleId>
             </schedule>
             <routePoint>
                 <point id = "20" lat = "45.34568" long = "32.45653" ratioVel = "1" type = "road">coment</point>
@@ -120,12 +120,12 @@
             <Saturday scheduleId = "0"></Saturday>
             <Sunday scheduleId = "0"></Sunday> 
             <schedule>             
-                <scheduleId1>
-                    <sequenceId1 id = "12" timeStart = "5:45" travelTime = "1500000">coment</sequenceId1>
-                    <sequenceId1 id = "13" timeStart = "6:00" travelTime = "1500000">coment</sequenceId1>
-                    <sequenceId1 id = "14" timeStart = "6:25" travelTime = "1500000">coment</sequenceId1>
-                    <sequenceId1 id = "15" timeStart = "6:50" travelTime = "1500000">coment</sequenceId1>   
-                </scheduleId1>
+                <scheduleId id = "1">
+                    <sequenceId id = "0" timeStart = "5:45" travelTime = "1500000">coment</sequenceId>
+                    <sequenceId id = "1" timeStart = "6:00" travelTime = "1500000">coment</sequenceId>
+                    <sequenceId id = "2" timeStart = "6:25" travelTime = "1500000">coment</sequenceId>
+                    <sequenceId id = "3" timeStart = "6:50" travelTime = "1500000">coment</sequenceId>   
+                </scheduleId>
             </schedule>
             <routePoint>
                 <point id = "30" lat = "45.34568" long = "32.45653" ratioVel = "1" type = "road">coment</point>
