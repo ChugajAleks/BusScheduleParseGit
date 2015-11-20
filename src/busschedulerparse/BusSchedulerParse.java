@@ -16,16 +16,6 @@ import javax.xml.stream.XMLStreamReader;
 
 public class BusSchedulerParse implements ScheduleParse {
 
-    private List<BusSchedule> busScheduleList;
-    private BusSchedule busSchedule;
-    private DirectionRouteSchedule directionRouteSchedule; 
-    private List<List<ScheduleItem>> scheduleList;
-    private List<RoutePoint> routePointList;
-    private RoutePoint routePoint;
-    private String nameElement;
-    private String direction;
-    
-
 
     @Override
     public List<BusSchedule> unmarshallinhScheduleForOneDay(InputStream input, String dayOfWeek) throws XMLStreamException, ParseException, Exception {
@@ -33,12 +23,19 @@ public class BusSchedulerParse implements ScheduleParse {
         XMLStreamReader reader = factory.createXMLStreamReader(input);
         List<BusSchedule> ScheduleList = parseStreamReader(reader, dayOfWeek);
         reader.close();
-        
+
         return ScheduleList;
     }
 
     private List<BusSchedule> parseStreamReader(XMLStreamReader reader, String dayOfWeek) throws ParseException, Exception {
+        BusSchedule busSchedule = null;
+        List<BusSchedule> busScheduleList = null;
+        DirectionRouteSchedule directionRouteSchedule = null;
+        List<List<ScheduleItem>> scheduleList = null;
+        List<RoutePoint> routePointList = null;
         String scheduleId = null;
+        String direction = null;
+        String nameElement = null;
         int event = reader.getEventType();
         while (true) {
             try {
@@ -47,57 +44,74 @@ public class BusSchedulerParse implements ScheduleParse {
                         busScheduleList = new ArrayList<BusSchedule>();
                         //достать инфу о том для какого города это расписание 
                         break;
-                    case XMLStreamConstants.START_ELEMENT:  
+                    case XMLStreamConstants.START_ELEMENT:
                         nameElement = reader.getName().toString();
                         if (nameElement.equals("bus")) {
                             busSchedule = new BusSchedule();
                             busSchedule.setName(reader.getAttributeValue(0));
-                        } 
-                        else if (nameElement.equals("color")) {
+                        } else if (nameElement.equals("color")) {
                             int red = Integer.parseInt(reader.getAttributeValue(0));
                             int green = Integer.parseInt(reader.getAttributeValue(1));
                             int blue = Integer.parseInt(reader.getAttributeValue(2));
                             Color color = new Color(red, green, blue);
                             busSchedule.setColor(color);
-                        }
-                        else if (nameElement.equals("marker")) {
+                        } else if (nameElement.equals("marker")) {
                             String markerAdress = reader.getAttributeValue(0);
                             busSchedule.setMarkerAdress(markerAdress);
-                        }
-                        else if (nameElement.equals("dir")) {
+                        } else if (nameElement.equals("dir")) {
                             directionRouteSchedule = new DirectionRouteSchedule();
                             direction = reader.getAttributeValue(0);
                             directionRouteSchedule.setName(direction);
-                        }
-                        else if (nameElement.equals(dayOfWeek)) {
+                        } else if (nameElement.equals(dayOfWeek)) {
                             scheduleId = reader.getAttributeValue(0);
-                        }
-                        else if (nameElement.equals("schedule")) {
-                            scheduleList = new ArrayList<List<ScheduleItem>>(); 
-                        }
-                        else if (nameElement.equals("scheduleId")) {
+                        } else if (nameElement.equals("schedule")) {
+                            scheduleList = new ArrayList<List<ScheduleItem>>();
+                        } else if (nameElement.equals("scheduleId")) {
                             if (reader.getAttributeValue(0).equals(scheduleId)) {
                                 scheduleList.add(createScheduleItemList(reader));
                                 scheduleId = null;
                             }
-                        }
-                        else if (nameElement.equals("routePoint")) {
+                        } else if (nameElement.equals("routePoint")) {
                             routePointList = new ArrayList<RoutePoint>();
-                        }
-                        else if (nameElement.equals("point")) {
-                            int id = Integer.parseInt(reader.getAttributeValue(0));
-                            double lat = Double.parseDouble(reader.getAttributeValue(1));
-                            double longnit = Double.parseDouble(reader.getAttributeValue(2));
-                            double ratioVel = Double.parseDouble(reader.getAttributeValue(3));
-                            String type = reader.getAttributeValue(4);
-                            routePoint = new RoutePoint(id, lat, longnit, ratioVel, type);
+                        } else if (nameElement.equals("point")) {
+                            routePointList.add(createRoutePoint(reader));
                         }
                         break;
-                    
+
                     case XMLStreamConstants.END_ELEMENT:
-                        fillClassFields(reader);
-                        break;
-               }
+                        nameElement = reader.getName().toString();
+                        if (nameElement.equals("bus")){
+                            if (busSchedule.readyAdd()) {
+                                    busScheduleList.add(busSchedule);
+                                }
+//                            else
+//                                throw new XMLStreamException("Class BusSchedule not ready for add to List");
+                        }
+                        else if (nameElement.equals("dir")){
+                            if (directionRouteSchedule.readyAdd()) {
+                                    if (directionRouteSchedule.getName().equals("forward")) 
+                                        busSchedule.setForwardDirection(directionRouteSchedule);
+                                    else 
+                                        busSchedule.setReversDirection(directionRouteSchedule);    
+                                }
+//                            else
+//                                throw new XMLStreamException("Class DirectionRouteSchedule not ready for add to List");
+                        }
+                        else if (nameElement.equals("schedule")){
+                            if (scheduleList.size() > 0) {
+                                    directionRouteSchedule.setSchedule(scheduleList);
+                            }
+//                            else
+//                                throw new XMLStreamException("size scheduleItemList = 0");
+                        }
+                        else if (nameElement.equals("routePoint")){
+                            if (routePointList.size() > 0) {
+                                    directionRouteSchedule.setRoute(routePointList);
+                                }
+//                            else
+//                                throw new XMLStreamException("size routePointList = 0");
+                        }                        
+                }
                 if (!reader.hasNext()) {
                     break;
                 }
@@ -110,9 +124,40 @@ public class BusSchedulerParse implements ScheduleParse {
         return busScheduleList;
     }
 
+    private RoutePoint createRoutePoint(XMLStreamReader reader) throws XMLStreamException {
+        RoutePoint routePoint = null;
+        String nameElement = null;
+        int event = reader.getEventType();
+        while (true) {
+            switch (event) {
+                case XMLStreamConstants.START_ELEMENT:
+                    nameElement = reader.getName().toString();
+                    if (event == XMLStreamConstants.START_ELEMENT & nameElement.equals("point")) {
+                        int id = Integer.parseInt(reader.getAttributeValue(0));
+                        double lat = Double.parseDouble(reader.getAttributeValue(1));
+                        double longnit = Double.parseDouble(reader.getAttributeValue(2));
+                        double ratioVel = Double.parseDouble(reader.getAttributeValue(3));
+                        String type = reader.getAttributeValue(4);
+                        routePoint = new RoutePoint(id, lat, longnit, ratioVel, type);
+                    }
+                case XMLStreamConstants.END_ELEMENT:
+                    nameElement = reader.getName().toString();
+                    break;
+            }
+            if (event == XMLStreamConstants.END_ELEMENT & nameElement.equals("point")) 
+                break;
+            event = reader.next();
+            if (!reader.hasNext()) {
+                break;
+            }
+        }
+        return routePoint;
+    }
+
     private List<ScheduleItem> createScheduleItemList(XMLStreamReader reader) throws ParseException, NumberFormatException, XMLStreamException {
         ScheduleItem scheduleItem = null;
         List<ScheduleItem> scheduleItemList = new ArrayList<ScheduleItem>();
+        String nameElement = null;
         int event = reader.getEventType();
         while (true) {
             switch (event) {
@@ -138,61 +183,14 @@ public class BusSchedulerParse implements ScheduleParse {
                     }
                     break;
             }
-            if (event == XMLStreamConstants.END_ELEMENT & nameElement.equals("scheduleId") )
+            if (event == XMLStreamConstants.END_ELEMENT & nameElement.equals("scheduleId")) {
                 break;
+            }
             event = reader.next();
-            if (!reader.hasNext())
+            if (!reader.hasNext()) {
                 break;
+            }
         }
-    return  scheduleItemList;   
+        return scheduleItemList;
     }
-
-    private void fillClassFields(XMLStreamReader reader) {
-        nameElement = reader.getName().toString();
-        
-        switch (nameElement) {
-            case "bus":
-                if (busSchedule.readyAdd()) {
-                    busScheduleList.add(busSchedule);
-                }
-//                            else
-//                                throw new XMLStreamException("Class BusSchedule not ready for add to List");
-                break;
-            case "dir":
-                if (directionRouteSchedule.readyAdd()) {
-                    if (directionRouteSchedule.getName().equals("forward")) {
-                        busSchedule.setForwardDirection(directionRouteSchedule);
-                    } else {
-                        busSchedule.setReversDirection(directionRouteSchedule);
-                    }
-                }
-//                            else
-//                                throw new XMLStreamException("Class DirectionRouteSchedule not ready for add to List");
-                break;
-            case "schedule":
-                if (scheduleList.size() > 0){
-                directionRouteSchedule.setSchedule(scheduleList);
-                
-                }
-//                            else
-//                                throw new XMLStreamException("size scheduleItemList = 0");
-                break;
-            case "routePoint":
-                if(routePointList.size() > 0)
-                directionRouteSchedule.setRoute(routePointList);
-//                            else
-//                                throw new XMLStreamException("size routePointList = 0");
-                break;
-            case "point":
-                if (routePoint.readyAdd())
-                routePointList.add(routePoint);
-//                            else
-//                                throw new XMLStreamException("Class RoutePoint not ready for add to List");
-                break;
-        }
-      
-    }
-
-    
-
 }
